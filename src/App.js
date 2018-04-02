@@ -10,60 +10,50 @@ class App extends Component {
  constructor() {
     super()
     this.state = {
-      projects: data,
-      newInput: ""
+      projects: data 
     }
-
-   //console.log(this.state.newInput)
   }
 
 
+handleSubmit = e => {
+  e.preventDefault()
+  this.refs.newItem.value
+  
 
-
-
-  damian(e){
-    e.preventDefault() 
-    
-    let valueInput = document.querySelector(".form__text").value 
-    return console.log(valueInput)
-    this.setState({
-      newInput: valueInput
-    });
+  const newItems= {
+    key: this.state.projects[0].tasks.length +1,
+    title: this.refs.newItem.value,
+    tagged: '.internal'
   }
 
+const newTasks = this.state.projects[0].tasks.push(newItems)
+const newState = this.state.projects
 
+  this.setState ({
+    projects: newState
+  });
+
+  this.refs.newItem.value = ""
+  
+}
+
+render() {
   
 
-
-
-
-
-  
-
- 
-  render() {
-
-const datalist = this.state.projects
-//console.log(damian)
-
-
-
-
-    
     return (
       <div>
         <Header />
         <section>
           <div className='board'>
             <div className='board__form container'>
-              <form onSubmit={this.damian}>
+              <form onSubmit={this.handleSubmit}>
                 <div className='form'>
-                  <input ref='newItem' className='form__text' type='text' placeholder='Add new item...' />
+                  <input ref='newItem' className='form__text' type='text' placeholder={this.state.placeholder}/>
                   <button className='form__submit' type='submit'>Add new</button>
                 </div>
               </form>
             </div>
-            <Board newData={datalist} />
+            <Board newData={this.state.projects} />
           </div>
         </section>
       </div>

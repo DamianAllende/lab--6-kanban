@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 class Card extends Component {
   render() {
+    const datacard = this.props.data
+
     return (
       <li className='card__item'>
-        <p>`{this.props.info.title}`</p>
-        <small className='card__legend'>{this.props.info.tagged}</small>
+        <p>{datacard.title}</p>
+        <small className='card__legend'>{datacard.tagged}</small>
         <button className='card__action'>
           <i className='fa fa-times'></i>
         </button>
@@ -12,7 +14,6 @@ class Card extends Component {
     );
   }
 }
-
 export default Card;
 
 

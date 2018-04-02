@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import Card from './Card';
 
 class List extends Component {
+  
   render() {
-    const tasks = this.props.preTasks
-    const tasksLength = tasks.length
+    const cardTitle = this.props.title
+    const count = this.props.counts
+    
+  
     return (
       <article className='card'>
           <header>
             <div className='grid'>
-              <strong className='card__title'>{this.props.title}</strong>
-              <span className='card__quantity'>{tasksLength} tasks</span>
+              <strong className='card__title'>{cardTitle}</strong>
+              <span className='card__quantity'>{count.length} tasks</span>
             </div>
             <ul className='card__content'>
-              {tasks.map(function(list){
-                return <Card info={list}/>
-               })}
+              {count.map(function(card){
+                return <Card data={card} />
+              })}
             </ul>
           </header>
         </article>
